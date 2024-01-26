@@ -2,7 +2,7 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 // Asynchronous download of PDF
-var loadingTask = pdfjsLib.getDocument('url_of_your_pdf.pdf');
+var loadingTask = pdfjsLib.getDocument('./assets/resume_gdoc.pdf');
 loadingTask.promise.then(function(pdf) {
     console.log('PDF loaded');
     
