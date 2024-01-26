@@ -23,7 +23,7 @@
     
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
-        viewer = document.getElementById('pdf-viewer');
+        var viewer = document.getElementById('pdf-viewer');
         
         for(page = 1; page <= pdf.numPages; page++) {
           canvas = document.createElement("canvas");    
