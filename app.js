@@ -25,6 +25,10 @@ function renderPage(pdf, pageNumber) {
         var scale = 1.5;
         var viewport = page.getViewport({ scale: scale });
 
+        // Append the canvas to the container
+        var pdfContainer = document.getElementById('pdf-container');
+        pdfContainer.appendChild(canvas);
+
         // Create a new canvas element and add it to the document
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
