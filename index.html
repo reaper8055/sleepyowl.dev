@@ -12,13 +12,16 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
 </style>
-
-<script>   
+<script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
+<script type="module">   
     url = './assets/resume_gdoc.pdf';
     var thePdf = null;
     var scale = 1;
+
+  var { pdfjsLib } = globalThis;
+   pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.mjs';
     
-    PDFJS.getDocument(url).promise.then(function(pdf) {
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
         viewer = document.getElementById('pdf-viewer');
         
