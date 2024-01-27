@@ -1,65 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <style>
-  #pdf-viewer {
-    -webkit-overflow-scrolling: touch;
-  height: 100vh;
-  min-height: 100%;
-  overflow-y: scroll;
-  width: 100vw;
-  }
-  
-  .pdf-page-canvas {
-    -webkit-overflow-scrolling: touch;
-height: 100vh;
-min-height: 100%;
-overflow-y: scroll;
-width: 100vw;
-    display: block;
-    margin: 5px auto;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }
-</style>
-<script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
-<script type="module">   
-    var url = './assets/resume_gdoc.pdf';
-    var thePdf = null;
-    var scale = 1;
-
-  var { pdfjsLib } = globalThis;
-   pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.mjs';
-    
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-        thePdf = pdf;
-        var viewer = document.getElementById('pdf-viewer');
-        
-        for(var page = 1; page <= pdf.numPages; page++) {
-          var canvas = document.createElement("canvas");    
-          canvas.className = 'pdf-page-canvas';         
-          viewer.appendChild(canvas);            
-          renderPage(page, canvas);
-        }
-    });
-    
-    function renderPage(pageNumber, canvas) {
-        thePdf.getPage(pageNumber).then(function(page) {
-          var viewport = page.getViewport({ scale: scale });
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;          
-          page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
-    });
-    }
-</script>
-
-<div id='pdf-viewer'></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheets" href="./app.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <object
+      data="./assets/resume_gdoc.pdf"
+      type="application/pdf"
+      style="min-height: 100vh; width: 100%"
+    ></object>
+  </body>
 </html>
-
-
-
